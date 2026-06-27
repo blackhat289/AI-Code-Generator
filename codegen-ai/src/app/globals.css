@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: oklch(0.08 0.015 250);
+  --color-foreground: oklch(0.98 0.005 250);
+  
+  --color-card: oklch(0.12 0.02 250);
+  --color-card-foreground: oklch(0.98 0.005 250);
+  
+  --color-popover: oklch(0.12 0.02 250);
+  --color-popover-foreground: oklch(0.98 0.005 250);
+  
+  --color-primary: oklch(0.55 0.22 260);
+  --color-primary-foreground: oklch(0.98 0.005 250);
+  
+  --color-secondary: oklch(0.18 0.03 250);
+  --color-secondary-foreground: oklch(0.98 0.005 250);
+  
+  --color-muted: #111827;
+  --color-muted-foreground: #CBD5E1;
+  
+  --color-sidebar: #111827;
+  --color-sidebar-foreground: #CBD5E1;
+  
+  --color-accent: oklch(0.25 0.04 250);
+  --color-accent-foreground: oklch(0.98 0.005 250);
+  
+  --color-destructive: oklch(0.57 0.2 15);
+  --color-destructive-foreground: oklch(0.98 0.005 250);
+  
+  --color-border: rgba(250, 246, 238, 0.18);
+  --color-input: oklch(0.18 0.02 250);
+  --color-ring: oklch(0.55 0.22 260);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  
+  /* Inputs Placeholder styling */
+  ::placeholder {
+    color: #94A3B8;
+  }
+  .light ::placeholder {
+    color: #64748B;
+  }
+}
+
+/* Glassmorphism background */
+.glass {
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Animated border glows */
+.glow-border {
+  position: relative;
+  z-index: 1;
+}
+
+.glow-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, oklch(0.55 0.22 260), oklch(0.65 0.22 300));
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0.15;
+  transition: opacity 0.3s ease;
+}
+
+.glow-border:hover::after {
+  opacity: 0.35;
+}
+
+/* Background patterns */
+.bg-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+}
+
+.light .bg-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.015) 1px, transparent 1px);
+}
+
+.radial-glow {
+  background: radial-gradient(circle 800px at var(--x, 50%) var(--y, 50%), rgba(99, 102, 241, 0.05), transparent 80%);
+}
+
+/* Fix native dropdown option text visibility in dark mode */
+select option {
+  background-color: #0c0f17 !important;
+  color: #f4f4f5 !important;
+}
+
+/* Light Theme Overrides */
+.light {
+  --color-background: #FFFFFF; /* White Workspace Background */
+  --color-foreground: #000000; /* Black Layout Text */
+  
+  --color-card: #FAF6EE; /* Creme Cards */
+  --color-card-foreground: #000000;
+  
+  --color-popover: #FAF6EE;
+  --color-popover-foreground: #000000;
+  
+  --color-primary: #6D28D9;
+  --color-primary-foreground: #FFFFFF;
+  
+  --color-secondary: #FFFFFF;
+  --color-secondary-foreground: #000000;
+  
+  --color-muted: #1E293B; /* Midnight Blue heading backgrounds */
+  --color-muted-foreground: #475569; /* Dark gray for secondary text and layout breadcrumbs */
+  
+  --color-sidebar: #FFFFFF; /* White Sidebar */
+  --color-sidebar-foreground: #000000; /* Black text for Sidebar options */
+  
+  --color-accent: #7C3AED;
+  --color-accent-foreground: #FFFFFF;
+  
+  --color-border: #1E293B; /* Midnight Blue borders */
+  --color-input: #F1F5F9;
+  --color-ring: #6D28D9;
+  
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+}
+
+.light .glass {
+  background: rgba(250, 246, 238, 0.85);
+  border: 1px solid var(--color-border);
+}
+
+.light select option {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+}
